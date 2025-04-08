@@ -22,8 +22,8 @@ stages{
             withCredentials([string(credentialsId: 'DOCKER_HUB_PASSWORD_Formation13', variable: 'DOCKER_HUB_PASSWORD')]) {
                 echo "print tag : $LOCAL_TAG"
                 sh 'docker login -u ybm2i -p $DOCKER_HUB_PASSWORD'
-                sh 'docker build -t ybm2i/website-jenkins-YB:$LOCAL_TAG .'
-                sh 'docker push ybm2i/website-jenkins-YB:$LOCAL_TAG'
+                sh 'docker build -t ybm2i/website-jenkins-yb:$LOCAL_TAG .'
+                sh 'docker push ybm2i/website-jenkins-yb:$LOCAL_TAG'
             }
         }
     }
@@ -34,7 +34,7 @@ stages{
         steps {
             withKubeConfig([credentialsId: 'kubeconfigYB']) {
                 script {
-                    sh "sed -i 's#replace#ybm2i/website-jenkins-YB:$LOCAL_TAG#g' k8s_deployment_service.yaml"
+                    sh "sed -i 's#replace#ybm2i/website-jenkins-yb:$LOCAL_TAG#g' k8s_deployment_service.yaml"
                     sh 'kubectl apply -f k8s_deployment_service.yaml'
                 }
             }
