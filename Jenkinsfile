@@ -32,7 +32,7 @@ stages{
 
     stage('Kubernetes Deployment') {
         steps {
-            withKubeConfig([credentialsId: 'kubeconfigYB']) {
+            withKubeConfig([credentialsId: 'kubeconfigyannb']) {
                 script {
                     sh "sed -i 's#replace#ybm2i/website-jenkins-yb:$LOCAL_TAG#g' k8s_deployment_service.yaml"
                     sh 'kubectl apply -f k8s_deployment_service.yaml'
