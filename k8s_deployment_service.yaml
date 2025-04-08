@@ -2,21 +2,21 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: devachraf
-  name: devachraf
+    app: yannb
+  name: yannb
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: devachraf
+      app: yannb
   template:
     metadata:
       labels:
-        app: devachraf
+        app: yannb
     spec:
       containers:
       - image: replace
-        name: devachraf-container
+        name: yannb-container
         ports:
         - containerPort: 80  
         volumeMounts:
@@ -31,12 +31,12 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: devachraf
-  name: devachraf-svc
+    app: yannb
+  name: yannb-svc
 spec:
   type: NodePort
   selector:
-    app: devachraf
+    app: yannb
   ports:
   - port: 8888          
     targetPort: 80      
